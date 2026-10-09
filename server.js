@@ -7,7 +7,7 @@ app.use(cors());
 app.use(express.json());
 
 const SENDER_EMAIL = 'talhamurtaza124@gmail.com';
-const SENDER_PASS = 'rrtf zrra unou iwnj';
+const SENDER_PASS = 'iqyh tttb hoes pzii';
 
 // Working Gmail service configuration
 const transporter = nodemailer.createTransport({
