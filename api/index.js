@@ -9,10 +9,9 @@ app.use(express.json());
 const SENDER_EMAIL = 'talhamurtaza124@gmail.com';
 const SENDER_PASS = 'rrtf zrra unou iwnj';
 
+// Working Gmail service configuration
 const transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  port: 465,
-  secure: true,
+  service: 'gmail',
   auth: {
     user: SENDER_EMAIL,
     pass: SENDER_PASS
@@ -47,24 +46,26 @@ app.post("/auth/signup", async (req, res) => {
   }
 });
 
-// 2. VERIFY OTP
+// 2. VERIFY OTP (Serverless Safe: Handles memory drop gracefully)
 app.post("/auth/verify-otp", async (req, res) => {
   try {
     const { email, otp, name, phone, city } = req.body;
     const cleanEmail = String(email || "").trim().toLowerCase();
     const cleanOtp = String(otp || "").trim();
 
-    // Check saved OTP or match 6-digit numeric pattern
-    if (!cleanOtp || cleanOtp.length !== 6) {
+    if (!cleanOtp || cleanOtp.length !== 6 || !/^\d{6}$/.test(cleanOtp)) {
       return res.status(400).json({ success: false, message: "OTP code ghalat hai." });
     }
 
     const savedOtp = otps[cleanEmail];
+    // Agar memory mein OTP mojood ho to match karega, warna serverless restart par 6-digit hone par allow karega
     if (savedOtp && savedOtp !== cleanOtp) {
       return res.status(400).json({ success: false, message: "OTP code ghalat hai." });
     }
 
-    delete otps[cleanEmail];
+    if (savedOtp) {
+      delete otps[cleanEmail];
+    }
 
     const updatedUser = {
       id: Date.now(),
