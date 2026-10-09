@@ -35,7 +35,7 @@ const transporter = nodemailer.createTransport({
 let pendingOtps = {};
 
 // 1. SIGNUP & EMAIL OTP
-app.post('/api/auth/signup', async (req, res) => {
+app.post('/auth/signup', async (req, res) => {
   const { name, email, phone, password, role, city } = req.body;
   if (!name || !email || !phone || !city || !role) {
     return res.status(400).json({ success: false, message: 'All fields required.' });
@@ -58,7 +58,7 @@ app.post('/api/auth/signup', async (req, res) => {
 });
 
 // 2. VERIFY OTP & SAVE USER PERMANENTLY
-app.post('/api/auth/verify-otp', (req, res) => {
+app.post('/auth/verify-otp', (req, res) => {
   const { email, otp } = req.body;
   const record = pendingOtps[email];
 
@@ -83,7 +83,7 @@ app.post('/api/auth/verify-otp', (req, res) => {
 });
 
 // 3. CREATE ORDER & SAVE PERMANENTLY
-app.post('/api/orders/create', async (req, res) => {
+app.post('/orders/create', async (req, res) => {
   const { serviceTitle, vendorName, customerName, customerPhone, customerEmail, city } = req.body;
   const orderId = 'ORD-' + Math.floor(1000 + Math.random() * 9000);
   const createdAt = new Date().toISOString();
@@ -118,13 +118,13 @@ app.post('/api/orders/create', async (req, res) => {
 });
 
 // 4. GET ALL ORDERS FOR ADMIN
-app.get('/api/orders/admin', (req, res) => {
+app.get('/orders/admin', (req, res) => {
   const db = readDB();
   res.json({ success: true, orders: db.orders });
 });
 
 // 5. DISPATCH ORDER & COLLECT CHARGES ACTION
-app.post('/api/orders/dispatch', (req, res) => {
+app.post('/orders/dispatch', (req, res) => {
   const { orderId } = req.body;
   const db = readDB();
   const order = db.orders.find(o => o.id === orderId);
