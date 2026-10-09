@@ -1,0 +1,62 @@
+{
+  "users": [
+    {
+      "id": 1791522308355,
+      "name": "M Talha Murtaza",
+      "email": "mtalhamurtaza41@gmail.com",
+      "phone": "03217811981",
+      "password": "Mi!611703",
+      "role": "customer",
+      "city": "Lahore",
+      "isVerified": true
+    },
+    {
+      "id": 1791522435545,
+      "name": "M Talha Murtaza",
+      "email": "mtalhamurtaza42@gmail.com",
+      "phone": "03217811981",
+      "password": "Mi!611703",
+      "role": "vendor",
+      "city": "Lahore",
+      "isVerified": true
+    }
+  ],
+  "orders": [
+    {
+      "id": "ORD-3537",
+      "serviceTitle": "AC Repair & Cleaning",
+      "city": "Lahore",
+      "vendorName": "Cooling Masters",
+      "customerName": "M Talha Murtaza",
+      "customerPhone": "03217811981",
+      "customerEmail": "mtalhamurtaza41@gmail.com",
+      "status": "Pending Admin Dispatch",
+      "commissionFee": 250,
+      "createdAt": "2026-10-09T05:06:01.795Z"
+    },
+    {
+      "id": "ORD-5599",
+      "serviceTitle": "AC Repair & Cleaning",
+      "city": "Lahore",
+      "vendorName": "Cooling Masters",
+      "customerName": "M Talha Murtaza",
+      "customerPhone": "03217811981",
+      "customerEmail": "mtalhamurtaza41@gmail.com",
+      "status": "Pending Admin Dispatch",
+      "commissionFee": 250,
+      "createdAt": "2026-10-09T05:05:14.793Z"
+    },
+    {
+      "id": "ORD-1662",
+      "serviceTitle": "AC Repair & Cleaning",
+      "city": "Lahore",
+      "vendorName": "Cooling Masters",
+      "customerName": "M Talha Murtaza",
+      "customerPhone": "03217811981",
+      "customerEmail": "mtalhamurtaza41@gmail.com",
+      "status": "Dispatched (Fee Collected)",
+      "commissionFee": 250,
+      "createdAt": "2026-10-08T19:51:58.761Z"
+    }
+  ]
+}
