@@ -32,7 +32,7 @@ const transporter = nodemailer.createTransport({
   auth: { user: SENDER_EMAIL, pass: SENDER_PASS }
 });
 
-let pendingOtps = {};
+global.pendingOtps = global.pendingOtps || {};
 
 // 1. SIGNUP & EMAIL OTP
 app.post('/auth/signup', async (req, res) => {
