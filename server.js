@@ -82,6 +82,19 @@ app.post("/auth/verify-otp", async (req, res) => {
   }
 });
 
+
+// --- CATALOG: PRODUCTS & SERVICES ---
+const catalogItems = [
+  { id: '1', title: 'Premium Bridal Dupatta', type: 'product', price: 4500, category: 'Clothing', vendor: 'Kanwal Boutique', image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=500' },
+  { id: '2', title: 'Custom App & Web Development', type: 'service', price: 15000, category: 'Services', vendor: 'Dev Studio', image: 'https://images.unsplash.com/photo-1547658719-da2b51169166?w=500' },
+  { id: '3', title: 'Luxury Embroidered Shawl', type: 'product', price: 3200, category: 'Clothing', vendor: 'Kanwal Boutique', image: 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=500' },
+  { id: '4', title: 'Fast Courier City Dispatch', type: 'service', price: 250, category: 'Delivery', vendor: 'Express Logistics', image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=500' }
+];
+
+app.get('/catalog', (req, res) => {
+  return res.json({ success: true, items: catalogItems });
+});
+
 // 3. ORDERS
 app.post("/orders/create", async (req, res) => {
   return res.json({ success: true, order: { id: Date.now(), ...req.body, status: "pending" } });
